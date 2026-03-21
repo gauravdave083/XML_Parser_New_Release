@@ -4,9 +4,13 @@ import XmlBlock from '../components/XmlBlock';
 import MappingModal from '../components/MappingModal';
 import PreviewModal from '../components/PreviewModal';
 import { generatePreviewData, exportToExcel } from '../utils/xmlParser';
+import { generateTemplatePreviewData, exportTemplateToExcel } from '../utils/templateExport';
 import './Dashboard.css';
 
-export default function Dashboard({ requestTabs, setRequestTabs, testCases, setTestCases }) {
+export default function Dashboard({
+  requestTabs, setRequestTabs, testCases, setTestCases,
+  exportMode, exportFormat, lookupWorkbook,
+}) {
   const [activeTC, setActiveTC] = useState(0);
   const [mappings, setMappings] = useState([]);
   const [showMapping, setShowMapping] = useState(false);
@@ -112,7 +116,12 @@ export default function Dashboard({ requestTabs, setRequestTabs, testCases, setT
 
   // --- Preview / Export ---
   const handlePreview = () => {
-    const data = generatePreviewData(testCases, requestTabs, mappings);
+    let data;
+    if (exportFormat === 'template') {
+      data = generateTemplatePreviewData(testCases, requestTabs, exportMode);
+    } else {
+      data = generatePreviewData(testCases, requestTabs, mappings);
+    }
     if (data.length === 0) {
       alert('No data to preview. Paste XML in at least one enabled request block.');
       return;
@@ -122,7 +131,11 @@ export default function Dashboard({ requestTabs, setRequestTabs, testCases, setT
   };
 
   const handleExport = () => {
-    exportToExcel(testCases, requestTabs, mappings);
+    if (exportFormat === 'template') {
+      exportTemplateToExcel(testCases, requestTabs, exportMode, lookupWorkbook);
+    } else {
+      exportToExcel(testCases, requestTabs, mappings);
+    }
   };
 
   const currentRequests = currentTC ? buildRequestsForTC(currentTC) : [];

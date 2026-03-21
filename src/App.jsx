@@ -15,6 +15,11 @@ function App() {
     { id: 'TC-001', data: {} },
   ])
 
+  // Template export settings
+  const [exportMode, setExportMode] = useState('NDC')
+  const [exportFormat, setExportFormat] = useState('template')
+  const [lookupWorkbook, setLookupWorkbook] = useState(null)
+
   const handleAutoFill = (filledTabs) => {
     // filledTabs: [{name, xml, enabled}]
     const newTabs = filledTabs.map((t) => ({ name: t.name, enabled: t.enabled }))
@@ -35,7 +40,14 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header
+        exportMode={exportMode}
+        setExportMode={setExportMode}
+        exportFormat={exportFormat}
+        setExportFormat={setExportFormat}
+        lookupWorkbook={lookupWorkbook}
+        setLookupWorkbook={setLookupWorkbook}
+      />
       <Routes>
         <Route
           path="/"
@@ -45,6 +57,9 @@ function App() {
               setRequestTabs={setRequestTabs}
               testCases={testCases}
               setTestCases={setTestCases}
+              exportMode={exportMode}
+              exportFormat={exportFormat}
+              lookupWorkbook={lookupWorkbook}
             />
           }
         />

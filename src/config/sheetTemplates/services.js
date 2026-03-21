@@ -1,0 +1,66 @@
+// Template definition for "Services" sheet — maps ServiceListRQ XML to Excel columns
+
+export const SERVICES_TEMPLATE = {
+  sheetName: 'Services',
+  detectByRootElement: 'ServiceListRQ',
+
+  sectionHeaders: {
+    2: 'Pre Booking Service Selector',
+    4: 'Post Booking Service Selector',
+    9: 'ServiceFilters',
+    10: 'Services specifc FOP',
+    13: 'Travelers Information',
+    14: 'EMDIssue Services Specific FOP for FLX workflows',
+    18: 'ServiceQualifier',
+    20: 'SSRs',
+  },
+
+  sectionMerges: [
+    [2, 3], [4, 8], [9, 9], [10, 12], [13, 13],
+    [14, 17], [18, 19], [20, 24],
+  ],
+
+  ndcColumns: [
+    { col: 0, header: 'TestCase_ID', xpath: null, source: 'testCaseId' },
+    { col: 1, header: 'ServiceList_LongSell', xpath: null, extractor: 'conditionalY_LongSell' },
+    { col: 2, header: 'PreServiceSelector', xpath: null, source: 'userInput' },
+    { col: 3, header: 'PreService_UserText', xpath: null },
+    { col: 4, header: 'PostServiceSelector', xpath: null, source: 'userInput' },
+    { col: 5, header: 'PostService_UserText', xpath: null },
+    { col: 6, header: 'PostService_UserText_UserInstruction', xpath: null },
+    { col: 7, header: 'PostService_UserText_InputID', xpath: null },
+    { col: 8, header: 'SSR_Flag', xpath: null },
+    { col: 9, header: 'ServiceFilter_GroupCode', xpath: null },
+    { col: 10, header: 'Services_FOP', xpath: null },
+    { col: 11, header: 'PaymentCardQualifiers_Services', xpath: null },
+    { col: 12, header: 'OBF_Flag', xpath: null },
+    { col: 13, header: 'ServiceList_Traveler_IDs', xpath: null, extractor: 'listPassengerIDs_generic' },
+    { col: 14, header: 'NA', xpath: null },
+    { col: 15, header: 'NA', xpath: null },
+    { col: 16, header: 'NA', xpath: null },
+    { col: 17, header: 'NA', xpath: null },
+    { col: 18, header: 'PreServiceQualifier', xpath: null },
+    { col: 19, header: 'PostServiceQualifier', xpath: null },
+    { col: 20, header: 'PreSSRs', xpath: null },
+    { col: 21, header: 'PostSSRs', xpath: null },
+    { col: 22, header: 'FreeTextSSRs', xpath: null },
+    { col: 23, header: 'Send_SSRText', xpath: null },
+    { col: 24, header: 'NA', xpath: null },
+  ],
+
+  flxColumns: [
+    { col: 0, header: 'TestCase_ID', xpath: null, source: 'testCaseId' },
+    { col: 1, header: 'NA', xpath: null },
+    { col: 2, header: 'FLX_PreServiceSelector', xpath: null, source: 'userInput' },
+    { col: 3, header: 'FLX_PreService_UserText', xpath: null },
+    { col: 4, header: 'FLX_PostServiceSelector', xpath: null, source: 'userInput' },
+    { col: 5, header: 'FLX_PostService_UserText', xpath: null },
+    { col: 9, header: 'ServiceFilter_GroupCode', xpath: null },
+    { col: 11, header: 'CCIssuer_CCIINNumber', xpath: null },
+    { col: 14, header: 'Pre_Services_EMDIssue_FOP', xpath: null },
+    { col: 15, header: 'Pre_Services_EMDIssue_Multiple_FOP', xpath: null },
+    { col: 16, header: 'Post_Services_EMDIssue_FOP', xpath: null },
+    { col: 17, header: 'Post_Services_EMDIssue_Multiple_FOP', xpath: null },
+    { col: 24, header: 'PostServices_SegRefs', xpath: null },
+  ],
+};

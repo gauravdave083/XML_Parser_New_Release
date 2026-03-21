@@ -105,3 +105,158 @@
 .profile-btn:hover {
   background: rgba(192, 132, 252, 0.2);
 }
+
+/* Settings dropdown */
+.settings-wrapper {
+  position: relative;
+}
+
+.icon-btn-active {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+  border-color: var(--accent-border) !important;
+}
+
+.settings-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 300px;
+  background: var(--bg-surface, #1a1a2e);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  padding: 6px 0;
+  animation: settingsSlideIn 0.15s ease;
+}
+
+@keyframes settingsSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.settings-dropdown-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text, #ccc);
+  padding: 10px 16px 6px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+.settings-row {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text, #999);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.settings-hint {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text, #666);
+  opacity: 0.6;
+}
+
+.settings-radio-group {
+  display: flex;
+  gap: 6px;
+}
+
+.settings-radio {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text, #999);
+  background: var(--bg-elevated, #1e1e2e);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.settings-radio input[type='radio'] {
+  display: none;
+}
+
+.settings-radio .radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--border, #444);
+  background: transparent;
+  transition: all 0.15s ease;
+}
+
+.settings-radio.active {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+.settings-radio.active .radio-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.settings-radio:hover:not(.active) {
+  border-color: var(--border-focus, #555);
+}
+
+.settings-file-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.settings-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-h, #e0e0e0);
+  background: var(--bg-elevated, #252535);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.settings-file-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.settings-file-name {
+  font-size: 11px;
+  color: var(--text, #ccc);
+  font-family: var(--mono);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settings-file-status {
+  font-size: 10px;
+  color: #4caf50;
+  font-weight: 500;
+}
