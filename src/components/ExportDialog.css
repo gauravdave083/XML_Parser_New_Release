@@ -1,0 +1,125 @@
+.export-dialog {
+  max-width: 420px;
+}
+
+.export-dialog-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 24px 20px;
+}
+
+.export-dialog-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.12), rgba(59, 130, 246, 0.10));
+  border: 1px solid rgba(74, 222, 128, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4ade80;
+  margin-bottom: 4px;
+}
+
+.export-dialog-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text, #999);
+  align-self: flex-start;
+}
+
+.export-dialog-input-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--bg, #0f0f13);
+  border: 1px solid var(--border, #2d2d3d);
+  border-radius: 10px;
+  padding: 0 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.export-dialog-input-wrapper:focus-within {
+  border-color: var(--accent, #c084fc);
+  box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.1);
+}
+
+.export-dialog-input-icon {
+  color: var(--text, #666);
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.export-dialog-input-wrapper:focus-within .export-dialog-input-icon {
+  color: var(--accent, #c084fc);
+}
+
+.export-dialog-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--mono, monospace);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h, #f0f0f0);
+  padding: 12px 0;
+  min-width: 0;
+}
+
+.export-dialog-input::placeholder {
+  color: var(--text, #4b5563);
+  font-weight: 400;
+}
+
+.export-dialog-ext {
+  font-family: var(--mono, monospace);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent, #c084fc);
+  flex-shrink: 0;
+  padding-left: 2px;
+  opacity: 0.8;
+}
+
+.export-dialog-preview {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-elevated, #1a1a2a);
+  border: 1px solid var(--border, #2d2d3d);
+  border-radius: 8px;
+}
+
+.export-dialog-preview-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text, #777);
+  white-space: nowrap;
+}
+
+.export-dialog-preview-name {
+  font-family: var(--mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-h, #e0e0e0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.export-dialog-footer {
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.export-dialog-footer .btn-accent:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

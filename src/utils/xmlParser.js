@@ -140,7 +140,7 @@ export function generatePreviewData(testCases, requestTabs, mappings) {
   return sheets;
 }
 
-export function exportToExcel(testCases, requestTabs, mappings) {
+export function exportToExcel(testCases, requestTabs, mappings, fileName) {
   const sheets = generatePreviewData(testCases, requestTabs, mappings);
   if (sheets.length === 0) {
     alert('No data to export. Please paste XML in at least one enabled request block.');
@@ -164,9 +164,9 @@ export function exportToExcel(testCases, requestTabs, mappings) {
     ws['!cols'] = colWidths;
     XLSX.utils.book_append_sheet(wb, ws, uniqueName);
   }
-  const fileName = `XMLParsed_${new Date().toISOString().slice(0, 10)}.xlsx`;
-  XLSX.writeFile(wb, fileName);
-  return fileName;
+  const finalName = fileName || `XMLParsed_${new Date().toISOString().slice(0, 10)}.xlsx`;
+  XLSX.writeFile(wb, finalName);
+  return finalName;
 }
 
 export function suggestColumnNames(xmlString) {

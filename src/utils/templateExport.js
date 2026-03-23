@@ -134,7 +134,7 @@ export function generateTemplatePreviewData(testCases, requestTabs, mode) {
 }
 
 // Build and download the Excel workbook
-export function exportTemplateToExcel(testCases, requestTabs, mode, lookupWorkbook) {
+export function exportTemplateToExcel(testCases, requestTabs, mode, lookupWorkbook, fileName) {
   const sheets = generateTemplatePreviewData(testCases, requestTabs, mode);
 
   if (sheets.length === 0) {
@@ -192,7 +192,7 @@ export function exportTemplateToExcel(testCases, requestTabs, mode, lookupWorkbo
     }
   }
 
-  const fileName = `SSR_INST_Export_${mode}_${new Date().toISOString().slice(0, 10)}.xlsx`;
-  XLSX.writeFile(wb, fileName);
-  return fileName;
+  const finalName = fileName || `SSR_INST_Export_${mode}_${new Date().toISOString().slice(0, 10)}.xlsx`;
+  XLSX.writeFile(wb, finalName);
+  return finalName;
 }

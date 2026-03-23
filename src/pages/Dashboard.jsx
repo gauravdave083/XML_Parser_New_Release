@@ -3,6 +3,7 @@ import { Plus, Eye, Rocket, Trash2, ClipboardList, X } from 'lucide-react';
 import XmlBlock from '../components/XmlBlock';
 import MappingModal from '../components/MappingModal';
 import PreviewModal from '../components/PreviewModal';
+import ExportDialog from '../components/ExportDialog';
 import { generatePreviewData, exportToExcel } from '../utils/xmlParser';
 import { generateTemplatePreviewData, exportTemplateToExcel } from '../utils/templateExport';
 import './Dashboard.css';
@@ -22,6 +23,8 @@ export default function Dashboard({
   const [showAddTC, setShowAddTC] = useState(false);
   const [editingTCIndex, setEditingTCIndex] = useState(null);
   const [editTCValue, setEditTCValue] = useState('');
+  const [showExportDialog, setShowExportDialog] = useState(false);
+  const [defaultExportName, setDefaultExportName] = useState('');
 
   const currentTC = testCases[activeTC] || testCases[0];
 
@@ -131,10 +134,20 @@ export default function Dashboard({
   };
 
   const handleExport = () => {
+    // Generate a smart default filename
+    const date = new Date().toISOString().slice(0, 10);
+    const defaultName = exportFormat === 'template'
+      ? `SSR_INST_Export_${exportMode}_${date}`
+      : `XMLParsed_${date}`;
+    setDefaultExportName(defaultName);
+    setShowExportDialog(true);
+  };
+
+  const handleExportConfirm = (fileName) => {
     if (exportFormat === 'template') {
-      exportTemplateToExcel(testCases, requestTabs, exportMode, lookupWorkbook);
+      exportTemplateToExcel(testCases, requestTabs, exportMode, lookupWorkbook, fileName);
     } else {
-      exportToExcel(testCases, requestTabs, mappings);
+      exportToExcel(testCases, requestTabs, mappings, fileName);
     }
   };
 
@@ -310,6 +323,13 @@ export default function Dashboard({
         onClose={() => setShowPreview(false)}
         data={previewData}
         onExport={handleExport}
+      />
+
+      <ExportDialog
+        open={showExportDialog}
+        onClose={() => setShowExportDialog(false)}
+        onConfirm={handleExportConfirm}
+        defaultFileName={defaultExportName}
       />
     </div>
   );
