@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/XML_Parser_New_Release/',
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    assetsDir: 'assets'
   }
 })
