@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gauravdave083.github.io/XML_Parser_New_Release",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
